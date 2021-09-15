@@ -1,38 +1,16 @@
-
 const ChessWebApi = require("chess-web-api")
 const chessApi = new ChessWebApi();
 
-chessApi.getPlayerMonthlyArchives("kourage")
-  .then(response => response.body)
-  .then(console.log)
-  .catch("Oops")
-
-
-
-
-// playerMonthlyArchives
-// time class 
-// white black
-
-
-// getPlayer
-// avatar,
-// name,
-// username,
-// followers,
-// country,
-// location,
-// status,
-// is_streamer,
-// twitch_url,
-// title
-
-// getPlayerStats
-// rapid rating
-// bullet rating
-// blitz rating
-// fide
-
+async function getAllPlayerData(username) {
+  let methods = [
+    "getPlayer", 
+    "getPlayerStats", 
+    "getPlayerMonthlyArchives"
+  ];
+  let promises = methods.map(method => chessApi[method](username));
+  let responses = await Promise.all(promises);
+  return responses.map(response => response.body);  
+}
 
 function App() {
   return (
