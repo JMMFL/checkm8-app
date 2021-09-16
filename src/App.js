@@ -1,21 +1,18 @@
-const ChessWebApi = require("chess-web-api")
-const chessApi = new ChessWebApi();
-
-async function getAllPlayerData(username) {
-  let methods = [
-    "getPlayer", 
-    "getPlayerStats", 
-    "getPlayerMonthlyArchives"
-  ];
-  let promises = methods.map(method => chessApi[method](username));
-  let responses = await Promise.all(promises);
-  return responses.map(response => response.body);  
-}
+import React from "react";
+import HomePage from "./pages/HomePage";
+import LadderPage from "./pages/LadderPage";
+import ProfilePage from "./pages/ProfilePage";
+import StreamersPage from "./pages/StreamersPage";
 
 function App() {
   return (
-    <h1>Gathering data...</h1>
-  );
+    <>
+      <HomePage />
+      <ProfilePage username="hikaru" />
+      <LadderPage />
+      <StreamersPage />
+    </>
+  )
 }
 
 export default App;
