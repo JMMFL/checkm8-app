@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"
 
 
 function Ladder({ players }) {
@@ -6,7 +7,8 @@ function Ladder({ players }) {
         <>
         <h1>HELLO</h1>
         <ul>
-            {players.map((player, i) => <h1 key={i}>{player.username}</h1>)}
+            {players.map(({username}, i) => 
+            <Link key={i} to={`/profile/${username}`}>{username}</Link>)}
         </ul>
         </>
     )

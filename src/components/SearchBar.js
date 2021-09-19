@@ -1,11 +1,14 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SearchBar() {
     const [input, setInput] = useState("");
+    const navigate = useNavigate();
 
     const submit = event => {
         event.preventDefault();
+        navigate(`profile/${input}`);
     }
 
     return (
