@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+p, h1, div {
+    font-family: Roboto, sans-serif;
+}
+
+:root {
+    --background-1: #2C2535;
+    --background-2: #362F41;
+    --background-3: #4A4355;
+    --grandmaster-color: #F4442E;
+    --master-color: #F9C846;
+    --expert-color: #0CCA4A;
+    --intermediate-color: #0F94BD;
+    --novice-color: #9FD6F9;
+    --beginner-color: #B8B8B8; 
+
+}
