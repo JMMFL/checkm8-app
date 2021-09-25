@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
-import chessApi from "../helpers";
+import chessApi, { sortLadders } from "../helpers";
 import "../App.css";
 import TitleCard from "../components/TitleCard";
 import LadderCard from "../components/LadderCard";
@@ -71,10 +71,10 @@ function ProfilePage() {
 
 
             const profile = {
-                ladders: [chess_blitz, chess_bullet, chess_rapid],
+                ladders: sortLadders([chess_blitz, chess_bullet, chess_rapid]),
                 summary: {followers, joined, last_online},
                 ...info, ...stats, ...archives}
-            
+
             setProfile(profile);
         }
 
