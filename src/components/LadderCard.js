@@ -14,6 +14,7 @@ const LadderDiv = styled.div`
     border-radius: 15px;
     padding-left: 19px;
     padding-right: 15px;
+    filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.5));
 `;
 
 const LadderStats = styled.div`
@@ -77,7 +78,6 @@ function LadderCard({ladder}) {
 
     return (
         <LadderDiv>
-
             <LadderMode>
                 <LadderImg src={image} alt={`Colorful icon for ${mode} category.`} />
                 <p style={{alignSelf: "center"}}>{mode}</p>
