@@ -9,6 +9,11 @@ p, h1, div {
 }
 
 :root {
+    --grey-light: #B8B8B8;
+    --grey-dark: #8F8F8F;
+    --red-loss: #FF5A5F;
+    --blue-win: #1CA1F1;
+    --grey-draw: #B8B8B8;
     --background-1: #2C2535;
     --background-2: #362F41;
     --background-3: #4A4355;
@@ -18,5 +23,6 @@ p, h1, div {
     --intermediate-color: #0F94BD;
     --novice-color: #9FD6F9;
     --beginner-color: #B8B8B8; 
+
 
 }

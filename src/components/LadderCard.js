@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import blitzPng from "../images/blitz.png";
+import bulletPng from "../images/bullet.png";
+import rapidPng from "../images/rapid.png";
 import React from "react";
 
-console.clear();
 
 const LadderDiv = styled.div`
     display: flex;
@@ -29,21 +31,62 @@ const LadderRating = styled.p`
 
 const LadderRecords = styled.p`
     font-size: 12px;
+    
 `;
 
+const LadderMode = styled.div`
+    display: flex;
+    text-transform: capitalize;
+    font-size: 18px;
+    color: var(--grey-light);
+    align-self: center;
+`
+
+const LadderImg = styled.img`
+    height: 30px;
+    margin-right: 15px;
+    align-self: center;
+`
+
+const Win = styled.span`
+    color: var(--blue-win);
+`
+
+const Loss = styled.span`
+    color: var(--red-loss);
+`
+
+const Draw = styled.span`
+    color: var(--grey-draw);
+`
 
 function LadderCard({ladder}) {
     const rating = ladder?.last.rating;
     const { win, loss, draw } = ladder?.record;
     const { mode } = ladder;
+    
+    let image;
+    if (mode === "blitz") {
+        image = blitzPng;
+    } else if (mode === "bullet") {
+        image = bulletPng;
+    } else {
+        image = rapidPng;
+    }
+
 
     return (
         <LadderDiv>
 
-            <p>{mode}</p>
+            <LadderMode>
+                <LadderImg src={image} alt={`Colorful icon for ${mode} category.`} />
+                <p style={{alignSelf: "center"}}>{mode}</p>
+            </LadderMode>
             <LadderStats>
                 <LadderRating>{rating}</LadderRating>
-                <LadderRecords>{win}W {loss}L {draw}D</LadderRecords>
+                <LadderRecords>
+                    <Win>{win}W</Win> <Loss>{loss}L</Loss> <Draw>{draw}D</Draw>
+                </LadderRecords>
             </LadderStats>
         </LadderDiv>
     )

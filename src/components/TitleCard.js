@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import React from "react";
-import "../App.css";
 
 const RankDiv = styled.div`
     font-weight: 700;
