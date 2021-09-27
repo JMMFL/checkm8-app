@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-p, h1, div {
+p, h1, div, ul, li {
     font-family: Roboto, sans-serif;
 }
 
@@ -23,6 +23,4 @@ p, h1, div {
     --intermediate-color: #0F94BD;
     --novice-color: #9FD6F9;
     --beginner-color: #B8B8B8; 
-
-
 }
