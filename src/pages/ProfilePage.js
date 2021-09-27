@@ -7,6 +7,9 @@ import LadderCard from "../components/LadderCard";
 import ProfileSummary from "../components/ProfileSummary";
 import ProfileReview from "../components/ProfileReview";
 import CountryBadge from "../components/CountryBadge";
+import StatusBadge from "../components/StatusBadge";
+import ChessBadge from "../components/ChessBadge";
+import TwitchBadge from "../components/TwitchBadge";
 
 const PageDiv = styled.div`
     display: flex;
@@ -31,7 +34,7 @@ const HeaderName = styled.h1`
 
 const ContentDiv = styled.div`
     width: 100vw;
-    height: 100vh;
+    height: 200vh;
     border-top-right-radius: 50px;
     border-top-left-radius: 50px;
     background-color: var(--background-2);
@@ -57,6 +60,7 @@ const SectionDiv = styled.div`
 
 const ProfileBadges = styled.div`
     display: grid;
+    grid-row-gap: 10px;
     grid-template-columns: 45px 1fr 1fr;
     grid-template-rows: 45px 45px;
 `
@@ -72,7 +76,7 @@ function ProfilePage() {
             const archives = await chessApi.getPlayerMonthlyArchives(username).then(r => r.body);
             
             const { followers, joined, last_online, country} = info;
-        
+            
             const { chess_blitz, chess_bullet, chess_rapid } = stats;
             chess_blitz.mode = "blitz";
             chess_bullet.mode = "bullet";
@@ -117,6 +121,9 @@ function ProfilePage() {
                     <ProfileReview review={profile.review} />
                     <ProfileBadges>
                         <CountryBadge countryCode={profile.countryCode} />
+                        <StatusBadge status={profile.status} />
+                        <ChessBadge url={profile.url} />
+                        <TwitchBadge url={profile.twitch_url} />
                     </ProfileBadges>
                 </SectionDiv>
             </ContentDiv>
