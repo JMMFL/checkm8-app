@@ -66,4 +66,10 @@ export async function getRecentStats(username, games) {
     return stats;
 }
 
+export async function getCountryCode(countryApi) {
+    const response = await fetch(countryApi);
+    const json = await response.json();
+    return json.code;
+}
+
 export default chessApi;

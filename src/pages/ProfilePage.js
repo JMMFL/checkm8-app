@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
-import chessApi, { getRecentStats, sortLadders } from "../helpers";
+import chessApi, { getCountryCode, getRecentStats, sortLadders } from "../helpers";
 import "../App.css";
 import TitleCard from "../components/TitleCard";
 import LadderCard from "../components/LadderCard";
 import ProfileSummary from "../components/ProfileSummary";
 import ProfileReview from "../components/ProfileReview";
+import CountryBadge from "../components/CountryBadge";
 
 const PageDiv = styled.div`
     display: flex;
@@ -54,6 +55,12 @@ const SectionDiv = styled.div`
     margin-bottom: 53px;
 `
 
+const ProfileBadges = styled.div`
+    display: grid;
+    grid-template-columns: 45px 1fr 1fr;
+    grid-template-rows: 45px 45px;
+`
+
 function ProfilePage() {
     const [profile, setProfile] = useState(null);
     const username = "Kourage";
@@ -63,8 +70,9 @@ function ProfilePage() {
             const info = await chessApi.getPlayer(username).then(r => r.body);
             const stats = await chessApi.getPlayerStats(username).then(r => r.body);
             const archives = await chessApi.getPlayerMonthlyArchives(username).then(r => r.body);
-
-            const { followers, joined, last_online} = info;
+            
+            const { followers, joined, last_online, country} = info;
+        
             const { chess_blitz, chess_bullet, chess_rapid } = stats;
             chess_blitz.mode = "blitz";
             chess_bullet.mode = "bullet";
@@ -73,11 +81,13 @@ function ProfilePage() {
             const games = [...archives.archives].reverse().slice(0, 10);
 
             const profile = {
+                countryCode: await getCountryCode(country),
                 ladders: sortLadders([chess_blitz, chess_bullet, chess_rapid]),
                 summary: {followers, joined, last_online},
                 review: await getRecentStats(username, games),
 
-                ...info, ...stats, ...archives}
+                ...info, ...stats, ...archives
+            }
 
             setProfile(profile);
         }
@@ -105,6 +115,9 @@ function ProfilePage() {
                     <SectionTitle>Profile</SectionTitle>
                     <ProfileSummary summary={profile.summary} ladders={profile.ladders} />
                     <ProfileReview review={profile.review} />
+                    <ProfileBadges>
+                        <CountryBadge countryCode={profile.countryCode} />
+                    </ProfileBadges>
                 </SectionDiv>
             </ContentDiv>
         </PageDiv>
