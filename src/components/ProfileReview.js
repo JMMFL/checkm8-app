@@ -10,6 +10,7 @@ const ReviewDiv = styled.div`
     padding-right: 18px;
     height: 134px;
     border-radius: 15px;
+    margin-bottom: 20px;
 `
 
 const ReviewList = styled.ul`
