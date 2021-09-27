@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React from "react";
 import ReactCountryFlag from "react-country-flag";
 
-const SmallBadge = styled.div`
+export const SmallBadge = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
