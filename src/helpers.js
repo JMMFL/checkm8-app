@@ -18,7 +18,7 @@ export function sortLadders(ladders) {
   return sortedLadders
 }
 
-export async function extractStats(username, games) {
+export async function getRecentStats(username, games) {
     const stats = {
         games: games.length,
         abandons: 0,

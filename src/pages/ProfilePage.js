@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
-import chessApi, { sortLadders } from "../helpers";
+import chessApi, { getRecentStats, sortLadders } from "../helpers";
 import "../App.css";
 import TitleCard from "../components/TitleCard";
 import LadderCard from "../components/LadderCard";
 import ProfileSummary from "../components/ProfileSummary";
+import ProfileReview from "../components/ProfileReview";
 
 const PageDiv = styled.div`
     display: flex;
@@ -69,10 +70,13 @@ function ProfilePage() {
             chess_bullet.mode = "bullet";
             chess_rapid.mode = "rapid";
 
+            const games = [...archives.archives].reverse().slice(0, 10);
 
             const profile = {
                 ladders: sortLadders([chess_blitz, chess_bullet, chess_rapid]),
                 summary: {followers, joined, last_online},
+                review: await getRecentStats(username, games),
+
                 ...info, ...stats, ...archives}
 
             setProfile(profile);
@@ -100,6 +104,7 @@ function ProfilePage() {
                 <SectionDiv>
                     <SectionTitle>Profile</SectionTitle>
                     <ProfileSummary summary={profile.summary} ladders={profile.ladders} />
+                    <ProfileReview review={profile.review} />
                 </SectionDiv>
             </ContentDiv>
         </PageDiv>
