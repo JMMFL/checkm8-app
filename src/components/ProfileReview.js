@@ -6,7 +6,7 @@ const ReviewDiv = styled.div`
     display: flex;
     justify-content: space-between;
     background-color: var(--background-1);
-    padding-left: 18px;
+    padding-left: 10px;
     padding-right: 18px;
     height: 134px;
     border-radius: 15px;
@@ -34,18 +34,21 @@ const Games = styled.span`
 `
 
 const Chart = styled.div`
+    display: grid;
     align-self: center;
+    grid-template-columns: 114px;
+    grid-template-rows: 114px;
     width: 114px;
     height: 114px;
+
 `
 const Winrate = styled.h1`
     color: white;
     font-weight: 700;
-    position: absolute;
     font-size: 18px;
-    left: 93px;
-    padding-top: 47px;
-
+    grid-area: 1 / 1 / 1 / 1;
+    justify-self: center;
+    align-self: center;
 `
 
 function ProfileReview({review}) {
@@ -78,7 +81,7 @@ function ProfileReview({review}) {
         <ReviewDiv>
             <Chart>
                 <Winrate>{winrate}%</Winrate>
-                <Doughnut style={{marginTop: "-3px", marginLeft: "-8px"}} data={chart} />
+                <Doughnut style={{gridArea: "1/1/1/1", marginTop: "-5px"}} data={chart} />
             </Chart>
             <div style={{alignSelf: "center"}}>
                 <h1 style={{fontSize: "18px", fontWeight: "400"}}><Win>{wins}W</Win> <Loss>{losses}L</Loss> <Games>{games}G</Games></h1>
