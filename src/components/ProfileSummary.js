@@ -30,6 +30,7 @@ const StatusDiv = styled.div`
     line-height: 18px;
     color: var(--grey-dark);
     align-self: center;
+    margin-bottom: 24px;
 `
 
 
