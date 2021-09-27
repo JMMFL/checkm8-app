@@ -10,6 +10,7 @@ const SummaryDiv = styled.div`
     justify-content: space-between;
     padding-left: 18px;
     padding-right: 18px;
+    margin-bottom: 16px;
 `
 
 const GamesTotal = styled.p`
