@@ -1,19 +1,24 @@
 import React from "react";
 import styled from "styled-components";
-import img from "../images/status.png";
+import premium from "../images/premium.png";
+import basic from "../images/basic.png";
 import { SmallBadge } from "./CountryBadge";
 
 const Badge = styled(SmallBadge)`
     grid-area: 2 / 1 / 2 / 1;
 `
 
+const Icon = styled.img`
+    width: 35px;
+    align-self: center;
+`
 
 function StatusBadge({status}) {
-    const opacity = status === "basic" ? 0.25 : 1;
+    const icon = status === "basic" ? basic : premium;
 
     return (
         <Badge>
-            <img style={{opacity: opacity, width: "35px", alignSelf: "center"}} src={img} alt="A shiny diamond." />
+            <Icon src={icon} alt="A badge symbolizing a player's membership." />
         </Badge>
     )
 }
