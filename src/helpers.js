@@ -72,4 +72,26 @@ export async function getCountryCode(countryApi) {
     return json.code;
 }
 
+export async function getRecentGames(archives, number) {
+    const recentArchives = archives.reverse();
+    const recentGames = []
+
+    let counter = number;
+    for (let archive of recentArchives) {
+        let response = await fetch(archive);
+        let json = await response.json();
+        let games = [...json.games].reverse();
+
+        for (let game of games) {
+            if (counter < 1) break;
+            recentGames.push(game);
+            counter--;
+        }
+
+        if (counter < 1) break;
+    }
+    
+    return recentGames;
+}
+
 export default chessApi;
