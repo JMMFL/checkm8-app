@@ -18,50 +18,32 @@ export function sortLadders(ladders) {
   return sortedLadders
 }
 
-export async function getRecentStats(username, games) {
+export function makeReview(username, games) {
     const stats = {
         games: games.length,
-        abandons: 0,
+        abandoned: 0,
         wins: 0,
         losses: 0,
-        checkmates: 0,
-        resigns: 0,
-        timeouts: 0,
-        draws: 0
+        checkmated: 0,
+        resigned: 0,
+        timeout: 0,
+        agreed: 0
     }
     
     for (let game of games) {
-        const data = await fetch(game)
-            .then(r => r.json())
-            .then(json => json.games[0]);
-
-        const { white, black } = data;
-        const enemy = white.username !== username ? white : black;
-        const { result } = enemy;
-        if (result === "win") stats.losses++;
+        const { white, black } = game;
+        const { username: whiteName } = white;
+        const opponent = whiteName !== username ? white: black;
+        const { result } = opponent;
         
-        switch(result) {
-            case "checkmated":
-                stats.checkmates++;
-                break;
-            case "resigned":
-                stats.resigns++;
-                break;
-            case "timeout":
-                stats.timeouts++;
-                break;
-            case 'agreed':
-                stats.draws++;
-                break;
-            case 'abandoned':
-                stats.abandons++;
-                break;
-            default:
-                break;
-        }
+        if (result === "win") {
+            stats.losses++
+        } else {
+            stats[result]++;
+        };
     }
 
-    stats.wins = stats.games - stats.losses - stats.draws;
+    stats.wins = stats.games - stats.losses - stats.agreed;
 
     return stats;
 }
