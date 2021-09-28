@@ -54,12 +54,12 @@ const Winrate = styled.h1`
 
 function ProfileReview({review}) {
     const { 
-        abandons,
-        checkmates,
+        abandoned,
+        checkmated,
         games,
         losses,
-        resigns,
-        timeouts,
+        resigned,
+        timeout,
         wins
     } = review;
 
@@ -87,10 +87,10 @@ function ProfileReview({review}) {
             <div style={{alignSelf: "center"}}>
                 <h1 style={{fontSize: "18px", fontWeight: "400"}}><Win>{wins}W</Win> <Loss>{losses}L</Loss> <Games>{games}G</Games></h1>
                 <ReviewList>
-                    <li>{checkmates} Checkmates</li>
-                    <li>{resigns} Resigns</li>
-                    <li>{timeouts} Timeouts</li>
-                    <li>{abandons} Abandons</li>
+                    <li>{checkmated} by mate</li>
+                    <li>{resigned} by resign</li>
+                    <li>{timeout} by time</li>
+                    <li>{abandoned} by rage</li>
                 </ReviewList>
             </div>
         </ReviewDiv>
