@@ -1,6 +1,13 @@
 const ChessWebApi = require("chess-web-api")
 const chessApi = new ChessWebApi();
 
+export const colors = {
+    lossText: '#FF5A5F',
+    winText: '#1CA1F1',
+    lossBg: 'rgba(255, 90, 95, 0.25)',
+    winBg: 'rgba(28, 161, 241, 0.25)'
+}
+
 export function sortLadders(ladders) {
   const sortedLadders = [...ladders].sort((ladderA, ladderB) => {
       const rankA = ladderA?.last.rating;
@@ -18,7 +25,7 @@ export function sortLadders(ladders) {
   return sortedLadders
 }
 
-export function makeReview(username, games) {
+export function makeReview(games, username) {
     const stats = {
         games: games.length,
         abandoned: 0,
@@ -29,7 +36,7 @@ export function makeReview(username, games) {
         timeout: 0,
         agreed: 0
     }
-    
+
     for (let game of games) {
         const { white, black } = game;
         const { username: whiteName } = white;
