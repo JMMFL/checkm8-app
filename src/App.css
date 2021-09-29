@@ -13,6 +13,9 @@ p, h1, div, ul, li {
     --grey-dark: #8F8F8F;
     --red-loss: #FF5A5F;
     --blue-win: #1CA1F1;
+    --blue-win-faded: rgba(28, 161, 241, 0.25);
+    --red-loss-faded: rgba(255, 90, 95, 0.25);
+    --yellow-highscore: #F9C846;
     --grey-draw: #B8B8B8;
     --background-1: #2C2535;
     --background-2: #362F41;
