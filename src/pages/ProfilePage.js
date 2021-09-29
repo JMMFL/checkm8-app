@@ -70,7 +70,7 @@ function ProfilePage() {
     const [profile, setProfile] = useState(null);
     const [games, setGames] = useState(null);
     const [avatars, setAvatars] = useState(null);
-    const username = "Kourage";
+    const username = "GothamChess";
 
     useEffect(() => {
         async function getPlayerProfile() {
@@ -116,7 +116,7 @@ function ProfilePage() {
             <ContentDiv>
                 <SectionDiv>
                     <SectionTitle>Ranking</SectionTitle>
-                    <TitleCard ladders={profile.ladders} />
+                    <TitleCard ladders={profile.ladders} title={profile.title} />
                     {profile.ladders.map((ladder, i) =>
                         <LadderCard key={i} ladder={ladder} />
                     )}
