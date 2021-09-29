@@ -5,8 +5,14 @@ export const colors = {
     lossText: '#FF5A5F',
     winText: '#1CA1F1',
     lossBg: 'rgba(255, 90, 95, 0.25)',
-    winBg: 'rgba(28, 161, 241, 0.25)'
+    winBg: 'rgba(28, 161, 241, 0.25)',
+    drawText: '#B8B8B8',
+    drawBg: 'rgba(74, 67, 85)',
+    highScore: '#F9C846',
+    score: '#B8B8B8'
 }
+
+export const blankAvatar = "https://www.chess.com/bundles/web/images/user-image.007dad08.svg";
 
 export function sortLadders(ladders) {
   const sortedLadders = [...ladders].sort((ladderA, ladderB) => {
@@ -53,6 +59,24 @@ export function makeReview(games, username) {
     stats.wins = stats.games - stats.losses - stats.agreed;
 
     return stats;
+}
+
+export async function getEnemyAvatars(games, username) {
+    const avatars = [];
+
+    for (let game of games) {
+        let { white, black } = game;
+        let { username: wName } = white;
+        let { username: bName } = black;
+        let isUserWhite = username === wName;
+        let enemy = isUserWhite ? bName : wName;
+
+        let response = await chessApi.getPlayer(enemy);
+        let { avatar } = response.body;
+        avatars.push(avatar);
+    }
+
+    return avatars;
 }
 
 export async function getCountryCode(countryApi) {
