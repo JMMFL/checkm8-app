@@ -17,25 +17,39 @@ const RankDiv = styled.div`
     margin-bottom: 10px;
 `
 
-function TitleCard({ladders}) {
-    const ratings = ladders.map(ladder => ladder?.last.rating);
-    const bestRating = Math.max(...ratings);
-    
+function TitleCard({ladders, title}) {
     let givenRank;
-    if (bestRating < 1200) {
-        givenRank = "beginner";
-    } else if (bestRating < 1400) {
-        givenRank = "novice";
-    } else if (bestRating < 1800) {
-        givenRank = "intermediate";
-    } else if (bestRating < 2200) {
-        givenRank = "expert";
-    } else if (bestRating < 2500)  {
-        givenRank = "master";
-    } else {
-        givenRank = "grandmaster";
-    }
 
+    if (title !== undefined) {
+        switch(title) {
+            case "CM":
+            case "IM":
+            case "FM":
+            case "WCM":
+            case "WIM":
+            case "WFM":
+                givenRank = "master";
+                break;
+            default:
+                givenRank = "grandmaster";
+                break;
+        }
+
+    } else {
+        const ratings = ladders.map(ladder => ladder?.last.rating);
+        const bestRating = Math.max(...ratings);
+
+        if (bestRating < 1200) {
+            givenRank = "beginner";
+        } else if (bestRating < 1400) {
+            givenRank = "novice";
+        } else if (bestRating < 1800) {
+            givenRank = "intermediate";
+        } else {
+            givenRank = "expert";
+        }
+    }
+    
     return (
         <RankDiv color={`var(--${givenRank}-color)`}>{givenRank}</RankDiv>
     )
