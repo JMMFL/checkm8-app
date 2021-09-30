@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
-import chessApi, { getCountryCode, getEnemyAvatars, getRecentGames, makeReview, sortLadders } from "../helpers";
+import chessApi, { blankAvatar, getCountryCode, getEnemyAvatars, getRecentGames, makeReview, sortLadders } from "../helpers";
 import "../App.css";
 import TitleCard from "../components/TitleCard";
 import LadderCard from "../components/LadderCard";
@@ -35,7 +35,7 @@ const HeaderName = styled.h1`
 
 const ContentDiv = styled.div`
     width: 100vw;
-    height: 200vh;
+    height: max-content;
     border-top-right-radius: 50px;
     border-top-left-radius: 50px;
     background-color: var(--background-2);
@@ -70,7 +70,7 @@ function ProfilePage() {
     const [profile, setProfile] = useState(null);
     const [games, setGames] = useState(null);
     const [avatars, setAvatars] = useState(null);
-    const username = "GothamChess";
+    const username = "Gaurav_Iyer";
 
     useEffect(() => {
         async function getPlayerProfile() {
@@ -87,14 +87,16 @@ function ProfilePage() {
 
             const games = await getRecentGames(archives, 10);
             const avatars = await getEnemyAvatars(games, username);
-            
+            const avatar = info.avatar ? info.avatar : blankAvatar;
+
             const profile = {
                 countryCode: await getCountryCode(country),
                 ladders: sortLadders([chess_blitz, chess_bullet, chess_rapid]),
                 review: makeReview(games, username),
                 summary: {followers, joined, last_online},
+                avatar: avatar,
 
-                ...info, ...stats, ...archives
+                ...info, ...stats, ...archives,
             }
 
             setGames(games);
