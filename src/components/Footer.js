@@ -7,23 +7,25 @@ const Content = styled.footer`
     justify-content: center;
     align-content: center;
     width: 100vw;
-    padding-top: 10px;
+    height: 40px;
+    padding-top: 12px;
     padding-bottom: 10px;
+    justify-self: start;
 `
 
 const Link = styled.a`
     color: white;
     text-transform: uppercase;
     text-align: center;
+    text-decoration: underline;
     font-size: 10px;
     font-weight: 500;
 `
 
 function Footer() {
-
     return (
         <Content>
-            <Link href="https://github.com/JMMFL">Designed by Jordan</Link>
+            <Link href="https://github.com/JMMFL">Created by Jordan</Link>
         </Content>
     )
 }
