@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Form = styled.form`
+    align-self: center;
     display: grid;
     grid-template-columns: 80vw;
     grid-template-rows: 30px;
