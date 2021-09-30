@@ -166,7 +166,7 @@ function GameCard({game, username, avatar, enemyAvatar}) {
             break;
         case "agreed":
         case "insufficient":
-        case "repitition":
+        case "repetition":
             result = "draw";
             fullColor = drawText;
             fadeColor = drawBg;
