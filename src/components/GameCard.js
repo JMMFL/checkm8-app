@@ -14,7 +14,6 @@ const CardDiv = styled.div`
     border-radius: 15px;
     background: ${props => props.background};
     grid-template-columns: 20px 26px 16px 20px 42px 1fr 50px 12px 26px 13px 11px 26px 7px 23px;
-    /* grid-template-columns: 20px 26px 16px 20px 42px 10px 50px 12px 26px 13px 11px 26px 23px; */
     grid-template-rows: 10px 10px 10px 40px 10px;
     margin-bottom: 7px;
     filter: drop-shadow(0 0 3px #000);
@@ -166,6 +165,8 @@ function GameCard({game, username, avatar, enemyAvatar}) {
             fadeColor = winBg;
             break;
         case "agreed":
+        case "insufficient":
+        case "repitition":
             result = "draw";
             fullColor = drawText;
             fadeColor = drawBg;
