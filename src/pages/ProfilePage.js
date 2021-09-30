@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import chessApi, { blankAvatar, getCountryCode, getEnemyAvatars, getRecentGames, makeReview, sortLadders } from "../helpers";
 import "../App.css";
 import TitleCard from "../components/TitleCard";
@@ -11,6 +12,9 @@ import StatusBadge from "../components/StatusBadge";
 import ChessBadge from "../components/ChessBadge";
 import TwitchBadge from "../components/TwitchBadge";
 import GameCard from "../components/GameCard";
+import SearchBar from "../components/SearchBar";
+import Footer from "../components/Footer";
+import Loader from "../components/Loader";
 
 const PageDiv = styled.div`
     display: flex;
@@ -67,52 +71,64 @@ const ProfileBadges = styled.div`
 `
 
 function ProfilePage() {
+    const [status, setStatus] = useState("loading");
     const [profile, setProfile] = useState(null);
     const [games, setGames] = useState(null);
     const [avatars, setAvatars] = useState(null);
-    const username = "Gaurav_Iyer";
+    const { username } = useParams();
+
 
     useEffect(() => {
         async function getPlayerProfile() {
-            const info = await chessApi.getPlayer(username).then(r => r.body);
-            const stats = await chessApi.getPlayerStats(username).then(r => r.body);
-            const archives = await chessApi.getPlayerMonthlyArchives(username).then(r => r.body.archives);
-            
-            const { followers, joined, last_online, country} = info;
-            
-            const { chess_blitz, chess_bullet, chess_rapid } = stats;
-            chess_blitz.mode = "blitz";
-            chess_bullet.mode = "bullet";
-            chess_rapid.mode = "rapid";
+            try {
+                const info = await chessApi.getPlayer(username).then(r => r.body);
+                const stats = await chessApi.getPlayerStats(username).then(r => r.body);
+                const archives = await chessApi.getPlayerMonthlyArchives(username).then(r => r.body.archives);
+                
+                const { followers, joined, last_online, country} = info;
+                
+                const { chess_blitz, chess_bullet, chess_rapid } = stats;
+                chess_blitz.mode = "blitz";
+                chess_bullet.mode = "bullet";
+                chess_rapid.mode = "rapid";
 
-            const games = await getRecentGames(archives, 10);
-            const avatars = await getEnemyAvatars(games, username);
-            const avatar = info.avatar ? info.avatar : blankAvatar;
+                const games = await getRecentGames(archives, 10);
+                const avatars = await getEnemyAvatars(games, username);
+                const avatar = info.avatar ? info.avatar : blankAvatar;
 
-            const profile = {
-                countryCode: await getCountryCode(country),
-                ladders: sortLadders([chess_blitz, chess_bullet, chess_rapid]),
-                review: makeReview(games, username),
-                summary: {followers, joined, last_online},
-                avatar: avatar,
+                const profile = {
+                    countryCode: await getCountryCode(country),
+                    ladders: sortLadders([chess_blitz, chess_bullet, chess_rapid]),
+                    review: makeReview(games, username),
+                    summary: {followers, joined, last_online},
+                    avatar: avatar,
 
-                ...info, ...stats, ...archives,
+                    ...info, ...stats, ...archives,
+                }
+
+                setGames(games);
+                setProfile(profile);
+                setAvatars(avatars);
+                setStatus("success");
+            } catch {
+                setStatus("failure");
             }
-
-            setGames(games);
-            setProfile(profile);
-            setAvatars(avatars);
         }
 
         getPlayerProfile()
-    }, [])
+    }, [username])
 
-    if (profile === null || avatars === null) {
-        return "Loading...";
-    }
 
-    return (
-        <PageDiv>                
+    if (status === "loading") {
+        return (
+            <PageDiv>
+                <Loader />
+            </PageDiv>
+        )
+    } else if (status === "success") {
+        return (
+            <PageDiv>
+            <SearchBar />
             <HeaderImg src={profile.avatar} />
             <HeaderName>{profile.username}</HeaderName>
             <ContentDiv>
@@ -151,8 +167,28 @@ function ProfilePage() {
                     }
                 </SectionDiv>
             </ContentDiv>
+            <Footer />
         </PageDiv>
-    );
+        )
+    } else {
+        return (
+            <PageDiv>
+                <SearchBar />
+                <p style={{
+                    textAlign: "center",
+                    color: "lightgrey",
+                    fontSize: "64px",
+                    marginBottom: "12px"
+                }}>(◕︵◕)</p>
+                <h1 style={{
+                    textAlign: "center",
+                    color: "lightgrey",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                }}>Player "{username}" doesn't exist on Chess.com.</h1>
+            </PageDiv>
+        )
+    }
 }
 
 export default ProfilePage
