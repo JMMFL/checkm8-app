@@ -1,6 +1,43 @@
+import { FaSearch } from "react-icons/fa";
+import styled from "styled-components";
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+const Form = styled.form`
+    display: grid;
+    grid-template-columns: 80vw;
+    grid-template-rows: 30px;
+    padding: 20px;
+    padding-top: 30px;
+    margin-bottom: 20px;
+`
+
+const Search = styled.input`
+    grid-area: 1 / 1 / 2 / 2;
+    justify-self: end;
+    align-self: end;
+    background-color: white;
+    border: none;
+    width: 80vw;
+    height: 30px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    text-align: left;
+    padding-left: 20px;
+    font-size: 16px;
+`
+
+const Submit = styled.button`
+    grid-area: 1 / 1 / 2 / 2;
+    width: 50px;
+    border: none;
+    color: white;
+    background-color: black;
+    font-weight: bold;
+    justify-self: end;
+    font-size: 14px;
+`
 
 function SearchBar() {
     const [input, setInput] = useState("");
@@ -12,16 +49,16 @@ function SearchBar() {
     }
 
     return (
-        <form onSubmit={submit}>
-            <input 
+        <Form onSubmit={submit}>
+            <Search 
                 type="search" 
                 value={input} 
                 onChange={event => setInput(event.target.value)}
-                placeholder="Hikaru" 
+                placeholder="Hikaru, GothamChess ..." 
                 required
             />
-            <input type="submit" value="search" />
-        </form>
+            <Submit type="submit">GO</Submit>
+        </Form>
     )
 
 }
