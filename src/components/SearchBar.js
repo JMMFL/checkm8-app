@@ -1,4 +1,3 @@
-import { FaSearch } from "react-icons/fa";
 import styled from "styled-components";
 import React from "react";
 import { useState } from "react";
@@ -45,7 +44,8 @@ function SearchBar() {
 
     const submit = event => {
         event.preventDefault();
-        navigate(`profile/${input}`);
+        navigate(`/profile/${input}`);
+        window.location.reload();
     }
 
     return (
