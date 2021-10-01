@@ -1,5 +1,6 @@
 {
-  "name": "e4-e5",
+  "name": "checkm8-app",
+  "homepage": "http://checkm8.me",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
