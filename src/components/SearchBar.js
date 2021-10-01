@@ -11,6 +11,10 @@ const Form = styled.form`
     padding: 20px;
     padding-top: 30px;
     margin-bottom: 20px;
+
+    @media (min-width: 768px) {
+        grid-template-columns: 768px;
+    }
 `
 
 const Search = styled.input`
@@ -26,6 +30,11 @@ const Search = styled.input`
     text-align: left;
     padding-left: 20px;
     font-size: 16px;
+    
+    @media (min-width: 768px) {
+        justify-self: center;
+        width: 768px;
+    }
 `
 
 const Submit = styled.button`

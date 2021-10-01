@@ -17,6 +17,12 @@ const CardDiv = styled.div`
     grid-template-rows: 10px 10px 10px 40px 10px;
     margin-bottom: 7px;
     filter: drop-shadow(0 0 3px #000);
+
+    @media (min-width: 768px) {
+        grid-template-columns: 20px 26px 30px 20px 42px 1fr 50px 12px 26px 13px 11px 26px 10px 23px;
+        grid-template-rows: 12px 12px 12px 42px 12px;
+        height: 90px;
+    }
 `
 
 const VerticalBar = styled.div`
@@ -27,6 +33,10 @@ const VerticalBar = styled.div`
     background: ${props => props.background};
     justify-self: center;
     align-self: center;
+
+    @media (min-width: 768px) {
+        height: 70px;
+    }
 `
 
 const ResultDiv = styled.div`
@@ -42,6 +52,10 @@ const Result = styled.h1`
     font-weight: 700;
     align-self: baseline;
     margin-right: 4px;
+
+    @media (min-width: 768px) {
+        font-size: 14px;
+    }
 `
 
 const StatusDiv = styled.div`
@@ -56,6 +70,10 @@ const Outcome = styled.p`
     font-size: 12px;
     text-transform: capitalize;
     align-self: baseline;
+
+    @media (min-width: 768px) {
+        font-size: 14px;
+    }
 `
 
 const Mode = styled.h1`
@@ -66,6 +84,10 @@ const Mode = styled.h1`
     text-transform: uppercase;
     align-self: baseline;
     margin-right: 4px;
+
+    @media (min-width: 768px) {
+        font-size: 14px;
+    }
 `
 
 const When = styled.p`
@@ -74,24 +96,28 @@ const When = styled.p`
     text-transform: lowercase;
     color: var(--grey-light);
     align-self: baseline;
+
+    @media (min-width: 768px) {
+        font-size: 12px;
+    }
 `
 
 const ImgPlayer = styled.img`
     grid-area: 4 / 2 / 5 / 4;
-    width: 42px;
+    width: 46px;
     align-self: end;
 `
 
 const ImgMode = styled.img`
     grid-area: 4 / 4 / 5 / 5;
-    height: 14px;
+    height: 18px;
     align-self: center;
-    justify-self: center;
+    justify-self: baseline;
 `
 
 const ImgEnemy = styled.img`
     grid-area: 4 / 5 / 5 / 6;
-    width: 42px;
+    width: 46px;
     align-self: end;
 `
 
@@ -102,7 +128,21 @@ const Players = styled.div`
     font-size: 11px;
     color: white;
     align-self: center;
-    justify-self: baseline;
+    justify-self: center;
+
+    @media (min-width: 414px) {
+        justify-self: baseline;
+        
+    }
+
+    @media (min-width: 768px) {
+        font-size: 13px;
+        width: 80px;
+        position: relative;
+        left: -35px;
+    }
+
+    
 `
 
 const Ratings = styled.div`
@@ -110,6 +150,10 @@ const Ratings = styled.div`
     font-size: 11px;
     color: var(--grey-light);
     align-self: center;
+
+    @media (min-width: 768px) { 
+        font-size: 13px;
+    }
 `
 
 const Colors = styled.div`
@@ -124,6 +168,15 @@ const ColorBlock = styled.div`
     height: 8px;
     width: 8px;
     background: ${props => props.color};
+
+    @media (min-width: 768px) { 
+        margin-top: 8px;
+        margin-bottom: 8px;
+        height: 10px;
+        width: 10px;
+        position: relative;
+        left: -4px;
+    }
 `
 
 const Scores = styled.div`
@@ -132,6 +185,10 @@ const Scores = styled.div`
     color: var(--grey-light);
     align-self: center;
     justify-self: end;
+
+    @media (min-width: 768px) { 
+        font-size: 13px;
+    }
 `
 
 const ScoreText = styled.p`

@@ -21,7 +21,7 @@ const PageDiv = styled.div`
     flex-direction: column;
     align-items: center;
     background-color: var(--background-1);
-    height: 100vh;
+    height: max-content;
 `;
 
 const HeaderImg = styled.img`
@@ -48,6 +48,16 @@ const ContentDiv = styled.div`
     padding-top: 32px;
     padding-left: 42px;
     padding-right: 42px;
+
+    @media (min-width: 768px) {
+        display: grid;
+        width: 768px;
+        height: max-content;
+        grid-column-gap: 30px;
+        grid-template-columns: 295px 358px;
+        grid-template-rows: 100vh;
+        overflow-y: hidden;
+    }
 `
 
 const SectionTitle = styled.h1`
@@ -68,6 +78,18 @@ const ProfileBadges = styled.div`
     grid-row-gap: 10px;
     grid-template-columns: 45px 1fr 1fr;
     grid-template-rows: 45px 45px;
+`
+
+const StatsDiv = styled.div`
+    @media (min-width: 768px) {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+`;
+
+const HistoryDiv = styled.div`
+@media (min-width: 768px) {
+        grid-area: 1 / 2 / 2 / 3;
+    }
 `
 
 function ProfilePage() {
@@ -132,40 +154,44 @@ function ProfilePage() {
             <HeaderImg src={profile.avatar} />
             <HeaderName>{profile.username}</HeaderName>
             <ContentDiv>
-                <SectionDiv>
-                    <SectionTitle>Ranking</SectionTitle>
-                    <TitleCard ladders={profile.ladders} title={profile.title} />
-                    {profile.ladders.map((ladder, i) =>
-                        <LadderCard key={i} ladder={ladder} />
-                    )}
-                </SectionDiv>
-                <SectionDiv>
-                    <SectionTitle>Profile</SectionTitle>
-                    <ProfileSummary summary={profile.summary} ladders={profile.ladders} />
-                    <ProfileReview review={profile.review} />
-                    <ProfileBadges>
-                        <CountryBadge countryCode={profile.countryCode} />
-                        <StatusBadge status={profile.status} />
-                        <ChessBadge url={profile.url} />
-                        <TwitchBadge url={profile.twitch_url} />
-                    </ProfileBadges>
-                </SectionDiv>
-                <SectionDiv>
-                    <SectionTitle>History</SectionTitle>
-                    {
-                        games.map((game, i) => {
-                            return (
-                                <GameCard
-                                    game={game}
-                                    username ={username}
-                                    avatar={profile.avatar}
-                                    enemyAvatar={avatars[i]}
-                                    key={i}
-                                />
-                            )
-                        })
-                    }
-                </SectionDiv>
+                <StatsDiv>
+                    <SectionDiv>
+                        <SectionTitle>Ranking</SectionTitle>
+                        <TitleCard ladders={profile.ladders} title={profile.title} />
+                        {profile.ladders.map((ladder, i) =>
+                            <LadderCard key={i} ladder={ladder} />
+                        )}
+                    </SectionDiv>
+                    <SectionDiv>
+                        <SectionTitle>Profile</SectionTitle>
+                        <ProfileSummary summary={profile.summary} ladders={profile.ladders} />
+                        <ProfileReview review={profile.review} />
+                        <ProfileBadges>
+                            <CountryBadge countryCode={profile.countryCode} />
+                            <StatusBadge status={profile.status} />
+                            <ChessBadge url={profile.url} />
+                            <TwitchBadge url={profile.twitch_url} />
+                        </ProfileBadges>
+                    </SectionDiv>
+                </StatsDiv>
+                <HistoryDiv>
+                    <SectionDiv>
+                        <SectionTitle>History</SectionTitle>
+                        {
+                            games.map((game, i) => {
+                                return (
+                                    <GameCard
+                                        game={game}
+                                        username ={username}
+                                        avatar={profile.avatar}
+                                        enemyAvatar={avatars[i]}
+                                        key={i}
+                                    />
+                                )
+                            })
+                        }
+                    </SectionDiv>
+                </HistoryDiv>
             </ContentDiv>
             <Footer />
         </PageDiv>
