@@ -104,21 +104,34 @@ const When = styled.p`
 
 const ImgPlayer = styled.img`
     grid-area: 4 / 2 / 5 / 4;
-    width: 46px;
+    width: 42px;
     align-self: end;
+
+    @media (min-width: 768px) {
+        width: 46px;
+    }
 `
 
 const ImgMode = styled.img`
     grid-area: 4 / 4 / 5 / 5;
-    height: 18px;
+    height: 14px;
     align-self: center;
-    justify-self: baseline;
+    justify-self: center;
+
+    @media (min-width: 768px) {
+        justify-self: baseline;
+        height: 18px;
+    }
 `
 
 const ImgEnemy = styled.img`
     grid-area: 4 / 5 / 5 / 6;
-    width: 46px;
+    width: 42px;
     align-self: end;
+
+    @media (min-width: 768px) {
+        width: 46px;
+    }
 `
 
 const Players = styled.div`
