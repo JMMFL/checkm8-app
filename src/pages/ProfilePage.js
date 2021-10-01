@@ -55,8 +55,7 @@ const ContentDiv = styled.div`
         height: max-content;
         grid-column-gap: 30px;
         grid-template-columns: 295px 358px;
-        grid-template-rows: 100vh;
-        overflow-y: hidden;
+        grid-template-rows: max-content;
     }
 `
 
