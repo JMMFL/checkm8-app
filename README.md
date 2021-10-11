@@ -4,7 +4,6 @@
 ## Description
 [Checkm8](https://checkm8.me/) is a small web app for checking <i>Chess.com</i> player stats and match history.
 Profile pages display chess titles, ladder ratings, recent performance, social links, game accuracies, and more. This project was inspired by [opgg](https://na.op.gg/).
-
 <br><br>
 
 ## Code
