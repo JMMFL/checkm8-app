@@ -1,5 +1,5 @@
 # Checkm8 | [Demo](https://checkm8.me/) 
-![Screenshot of main screen for Matt's portfolio](https://i.ibb.co/ZmVswKx/Screenshot-from-2021-10-11-18-27-50.png)
+![Screenshot of main screen for checkm8.me](https://i.ibb.co/ZmVswKx/Screenshot-from-2021-10-11-18-27-50.png)
 
 ## Description
 [Checkm8](https://checkm8.me/) is a small web app for checking <i>Chess.com</i> player stats and match history.
