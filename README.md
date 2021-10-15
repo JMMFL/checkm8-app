@@ -25,3 +25,4 @@ I used React with a lightweight Chess.com API wrapper:
 
 ## To-do
 - [ ] Fix UI from moving up when user opens keyboard.
+- [ ] Add file to store Styled Components.
